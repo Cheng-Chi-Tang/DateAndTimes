@@ -6,13 +6,13 @@ class DateAndTime:
         self.hour = hour_in_24
         self.minute = minute
     def __str__(self):
-        if int(self.hour) > 24 or int(self.hour) < 0:
+        if self.hour > 24 or self.hour < 0:
             return 'error'
-        return self.year +'-' + self.month + '-' + self.day + ' ' + self.hour + ':' + self.minute
+        return str(self.year) +'-' + str(self.month) + '-' + str(self.day) + ' ' + str(self.hour) + ':' + str(self.minute)
 
 # This is demo
-dateAndTime1 = DateAndTime('2019', '11', '30', '22', '31')
+dateAndTime1 = DateAndTime(2019, 11, 30, 22, 30)
 print(dateAndTime1) # 2019-11-30 22:31
 
-dateAndTime2 = DateAndTime('2020', '11', '30', '25', '00')
+dateAndTime2 = DateAndTime(2019, 11, 30, 25, 30)
 print(dateAndTime2) # 2019-11-30 22:31
