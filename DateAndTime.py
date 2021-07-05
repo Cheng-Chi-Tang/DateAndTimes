@@ -23,7 +23,7 @@ class DateAndTime:
                 (self.year == other.year and self.month > other.month) or \
                 (self.year == other.year and self.month == other.month and self.day > self.month)
 
-    def getHourDifference(dateAndTime1, dateAndTime2): # Assume dateAndTime2 is after dateAndTime1, and at most one month difference
+    def get_hour_difference(dateAndTime1, dateAndTime2): # Assume dateAndTime2 is after dateAndTime1, and at most one month difference
 
         if dateAndTime1 >= dateAndTime2: # swap
             temp = dateAndTime1
@@ -55,24 +55,20 @@ class DateAndTime:
         total_hour += hour2 + (24 - hour1)
         return total_hour
 
-    def getHourIntervals(dateAndTime1, dateAndTime2):# Assume time2 is after time1, and at most one month difference
+    def get_hour_intervals(dateAndTime1, dateAndTime2):# Assume time2 is after time1, and at most one month difference
         if dateAndTime1 >= dateAndTime2: # swap
             temp = dateAndTime1
             dateAndTime1 = dateAndTime2
             dateAndTime2 = temp
 
-        hour_difference = DateAndTime.getHourDifference(dateAndTime1, dateAndTime2)
+        hour_difference = DateAndTime.get_hour_difference(dateAndTime1, dateAndTime2)
         result = list()
         if hour_difference == 0:
             return result
         
         year1 = dateAndTime1.year
-        month1 = dateAndTime1.month
-        month2 = dateAndTime2.month
-        day1 = dateAndTime1.day
-        day2 = dateAndTime2.day
-        hour1 = dateAndTime1.hour
-        hour2 = dateAndTime2.hour
+        month1, day1, hour1 = dateAndTime1.month, dateAndTime1.day, dateAndTime1.hour
+        month2, day2, hour2 = dateAndTime2.month, dateAndTime2.day, dateAndTime2.hour
         total_hour = 0
         total_day = 0
         
@@ -98,7 +94,6 @@ class DateAndTime:
                         result.append(str(year1) + '-' + str(cur_month_num) + '-0' + str(cur_day_num) + ' ' + str(cur_hour_num))
                     else:
                         result.append(str(year1) + '-' + str(cur_month_num) + '-' + str(cur_day_num) + ' ' + str(cur_hour_num))
-
                     
             cur_hour_num += 1
             
@@ -125,6 +120,6 @@ dateAndTime3 = DateAndTime(2000, 2, 29, 23, 30)
 print(dateAndTime3) # 2019-2-29 23:30
 
 print('difference hour between dateAndTime1 and dateAndTime2:')
-print(str(DateAndTime.getHourDifference(dateAndTime1, dateAndTime2)))
+print(str(DateAndTime.get_hour_differenc(dateAndTime1, dateAndTime2)))
 
-# print(str(DateAndTime.getHourIntervals(dateAndTime1, dateAndTime2)))
+# print(str(DateAndTime.get_hour_intervals
