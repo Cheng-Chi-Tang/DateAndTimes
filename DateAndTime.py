@@ -83,17 +83,25 @@ class DateAndTime:
         
     #     print('hour_difference: ' + str(hour_difference))
         for i in range(hour_difference):
+            date_and_time_str = str(year1) + '-' \
+                             + (str(cur_month_num) if(cur_month_num >= 10) else '0' + str(cur_month_num)) + '-'\
+                             + (str(cur_day_num) if(cur_day_num >= 10) else '0' + str(cur_day_num)) + '-' \
+                             + (str(cur_hour_num) if(cur_hour_num >= 10) else '0' + str(cur_hour_num))
             if i > 0:
-                if cur_hour_num <= 9:
-                    if cur_day_num <= 9:
-                        result.append(str(year1) + '-' + str(cur_month_num) + '-0' + str(cur_day_num) + ' 0' + str(cur_hour_num))
-                    else:
-                        result.append(str(year1) + '-' + str(cur_month_num) + '-' + str(cur_day_num) + ' 0' + str(cur_hour_num))
-                else:
-                    if cur_day_num <= 9:
-                        result.append(str(year1) + '-' + str(cur_month_num) + '-0' + str(cur_day_num) + ' ' + str(cur_hour_num))
-                    else:
-                        result.append(str(year1) + '-' + str(cur_month_num) + '-' + str(cur_day_num) + ' ' + str(cur_hour_num))
+                result.append(date_and_time_str)
+
+
+            # if i > 0:
+            #     if cur_hour_num <= 9:
+            #         if cur_day_num <= 9:
+            #             result.append(str(year1) + '-' + str(cur_month_num) + '-0' + str(cur_day_num) + ' 0' + str(cur_hour_num))
+            #         else:
+            #             result.append(str(year1) + '-' + str(cur_month_num) + '-' + str(cur_day_num) + ' 0' + str(cur_hour_num))
+            #     else:
+            #         if cur_day_num <= 9:
+            #             result.append(str(year1) + '-' + str(cur_month_num) + '-0' + str(cur_day_num) + ' ' + str(cur_hour_num))
+            #         else:
+            #             result.append(str(year1) + '-' + str(cur_month_num) + '-' + str(cur_day_num) + ' ' + str(cur_hour_num))
                     
             cur_hour_num += 1
             
@@ -109,17 +117,17 @@ class DateAndTime:
             
         return result
 
-# Demo Part
+'''Demo How to Initialize The Data Structure'''
 dateAndTime1 = DateAndTime(2019, 9, 30, 22, 30)
 print(dateAndTime1) # 2019-9-30 22:31
 
-dateAndTime2 = DateAndTime(2019, 12, 1, 12, 30)
-print(dateAndTime2) # 2019-11-30 22:31
+dateAndTime2 = DateAndTime(2019, 10, 2, 12, 30)
+print(dateAndTime2) # 2019-10-02 22:31
 
 dateAndTime3 = DateAndTime(2000, 2, 29, 23, 30)
 print(dateAndTime3) # 2019-2-29 23:30
 
 print('difference hour between dateAndTime1 and dateAndTime2:')
-print(str(DateAndTime.get_hour_differenc(dateAndTime1, dateAndTime2)))
+print(str(DateAndTime.get_hour_difference(dateAndTime1, dateAndTime2)))
 
-# print(str(DateAndTime.get_hour_intervals
+print(str(DateAndTime.get_hour_intervals(dateAndTime1, dateAndTime2)))
