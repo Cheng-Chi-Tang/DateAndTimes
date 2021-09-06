@@ -19,8 +19,12 @@ class DateAndTime:
         else: # Common Year Condition
             if self.hour > 24 or self.hour < 0 or self.month <= 0 or self.month > 12 or self.day <= 0 or self.day > DateAndTime.CONST_COMM_YEAR_DAYS[self.month - 1]:
                 return 'error'
-        return str(self.year) +'-' + str(self.month) + '-' + str(self.day) + ' ' + str(self.hour) + ':' + str(self.minute)
-    
+        return str(self.year) +'-' + \
+              (str(self.month) if self.month >= 10 else '0' + str(self.month)) + '-' + \
+              (str(self.day) if self.day >= 10 else '0' + str(self.day)) + ' ' + \
+              (str(self.hour) if self.hour >= 10 else '0' + str(self.hour)) + ':' + \
+              (str(self.minute) if self.minute >= 10 else '0' + str(self.minute))
+     
     def __ge__(self, other): # define greater equal in this class
         return self.year > other.year or \
                 (self.year == other.year and self.month > other.month) or \
@@ -107,10 +111,10 @@ class DateAndTime:
         return result
 
 '''Demo How to Initialize The Data Structure'''
-dateAndTime1 = DateAndTime(2019, 9, 30, 22, 30)
+dateAndTime1 = DateAndTime(2019, 9, 30, 5, 30)
 print(dateAndTime1) # 2019-9-30 22:31
 
-dateAndTime2 = DateAndTime(2019, 10, 2, 12, 30)
+dateAndTime2 = DateAndTime(2019, 10, 2, 12, 6)
 print(dateAndTime2) # 2019-10-02 22:31
 
 dateAndTime3 = DateAndTime(2000, 2, 29, 23, 30)
