@@ -1,14 +1,17 @@
 class DateAndTime:
+    # Global Attributes
     CONST_LEAP_YEAR_DAYS = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     CONST_COMM_YEAR_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     CONST_CROSS_MONTH_SET = {"1-31,2-1", "2-28,3-1", "3-31,4-1", "4-30,5-1", "5-31,6-1", "6-30,7-1", 
                         "7-31,8-1", "8-31,9-1", "9-30,10-1", "10-31,11-1", "11-30,12-1", "1-31,1-1"}
+
     def __init__(self, year, month, day, hour_in_24, minute):
         self.year = year
         self.month = month
         self.day = day
         self.hour = hour_in_24
         self.minute = minute
+    
     def __str__(self):
         if self.year % 4 == 0 and self.year % 100 == 0 and self.year % 400 == 0: # Leap Year Condition
             if self.hour > 24 or self.hour < 0 or self.month <= 0 or self.month > 12 or self.day <= 0 or self.day > DateAndTime.CONST_LEAP_YEAR_DAYS[self.month - 1]:
@@ -23,7 +26,7 @@ class DateAndTime:
                 (self.year == other.year and self.month > other.month) or \
                 (self.year == other.year and self.month == other.month and self.day > self.month)
 
-    def get_hour_difference(dateAndTime1, dateAndTime2): # Assume dateAndTime2 is after dateAndTime1, and at most one month difference
+    def get_hour_difference(dateAndTime1, dateAndTime2):
 
         if dateAndTime1 >= dateAndTime2: # swap
             temp = dateAndTime1
@@ -55,7 +58,7 @@ class DateAndTime:
         total_hour += hour2 + (24 - hour1)
         return total_hour
 
-    def get_hour_intervals(dateAndTime1, dateAndTime2):# Assume time2 is after time1, and at most one month difference
+    def get_hour_intervals(dateAndTime1, dateAndTime2):
         if dateAndTime1 >= dateAndTime2: # swap
             temp = dateAndTime1
             dateAndTime1 = dateAndTime2
@@ -81,7 +84,6 @@ class DateAndTime:
         cur_day_num = int(cur_day)
         cur_hour_num = int(cur_hour)
         
-    #     print('hour_difference: ' + str(hour_difference))
         for i in range(hour_difference):
             date_and_time_str = str(year1) + '-' \
                              + (str(cur_month_num) if(cur_month_num >= 10) else '0' + str(cur_month_num)) + '-'\
@@ -90,19 +92,6 @@ class DateAndTime:
             if i > 0:
                 result.append(date_and_time_str)
 
-
-            # if i > 0:
-            #     if cur_hour_num <= 9:
-            #         if cur_day_num <= 9:
-            #             result.append(str(year1) + '-' + str(cur_month_num) + '-0' + str(cur_day_num) + ' 0' + str(cur_hour_num))
-            #         else:
-            #             result.append(str(year1) + '-' + str(cur_month_num) + '-' + str(cur_day_num) + ' 0' + str(cur_hour_num))
-            #     else:
-            #         if cur_day_num <= 9:
-            #             result.append(str(year1) + '-' + str(cur_month_num) + '-0' + str(cur_day_num) + ' ' + str(cur_hour_num))
-            #         else:
-            #             result.append(str(year1) + '-' + str(cur_month_num) + '-' + str(cur_day_num) + ' ' + str(cur_hour_num))
-                    
             cur_hour_num += 1
             
             if cur_hour_num >= 24:
